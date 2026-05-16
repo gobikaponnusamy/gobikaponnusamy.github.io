@@ -1,0 +1,584 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --bg: #050508;
+  --panel: #07101d;
+  --card: rgba(13, 25, 45, 0.82);
+  --line: rgba(52, 211, 153, 0.18);
+  --blue: #34d399;
+  --indigo: #22c55e;
+  --text: #f3f7ff;
+  --soft: #9aa8bb;
+  --muted: #617088;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 10% 15%, rgba(52, 211, 153, 0.14), transparent 34%),
+    radial-gradient(circle at 90% 8%, rgba(34, 197, 94, 0.13), transparent 30%),
+    #02050b;
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+}
+
+@layer components {
+  .site-shell {
+    @apply min-h-screen px-3 py-5 md:px-6;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .topbar {
+    @apply sticky top-3 z-50 mx-auto mb-4 flex h-14 max-w-7xl items-center rounded-2xl border px-5 backdrop-blur-2xl;
+    background: rgba(3, 9, 18, 0.82);
+    border-color: rgba(52, 211, 153, 0.16);
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.34);
+  }
+
+  .brand {
+    @apply mr-auto text-sm font-bold text-white;
+  }
+
+  .brand span {
+    @apply text-[var(--blue)];
+  }
+
+  .menu-button {
+    @apply ml-auto rounded-lg border p-2 text-white md:hidden;
+    border-color: var(--line);
+  }
+
+  .topbar nav {
+    @apply absolute left-3 right-3 top-[calc(100%+8px)] hidden rounded-2xl border p-3 md:static md:flex md:border-0 md:bg-transparent md:p-0;
+    background: rgba(6, 14, 27, 0.96);
+    border-color: var(--line);
+  }
+
+  .topbar nav.open {
+    @apply grid gap-1;
+  }
+
+  .topbar nav a {
+    @apply relative rounded-lg px-4 py-2 text-[0.72rem] font-semibold text-[var(--soft)] transition hover:text-white;
+  }
+
+  .topbar nav a::after {
+    content: "";
+    @apply absolute bottom-1 left-4 h-0.5 w-0 rounded-full transition-all duration-300;
+    background: linear-gradient(90deg, var(--blue), var(--indigo));
+  }
+
+  .topbar nav a.active {
+    @apply text-white;
+  }
+
+  .topbar nav a.active::after,
+  .topbar nav a:hover::after {
+    @apply w-[calc(100%-2rem)];
+  }
+
+  .theme-mark {
+    @apply ml-4 hidden text-[var(--soft)] md:block;
+  }
+
+  .page-panel {
+    @apply relative mx-auto mb-8 min-h-[calc(100vh-6.5rem)] max-w-7xl overflow-hidden rounded-2xl border p-6 md:p-8 lg:p-10;
+    background:
+      radial-gradient(circle at 80% 18%, rgba(52, 211, 153, 0.08), transparent 26%),
+      linear-gradient(135deg, rgba(8, 18, 33, 0.98), rgba(4, 9, 18, 0.98));
+    border-color: rgba(52, 211, 153, 0.18);
+    box-shadow: 0 28px 90px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .page-panel::after {
+    content: "";
+    @apply pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full blur-3xl;
+    background: rgba(52, 211, 153, 0.08);
+    animation: glow-drift 8s ease-in-out infinite alternate;
+  }
+
+  .page-panel::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0;
+    background-image:
+      linear-gradient(rgba(52, 211, 153, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(52, 211, 153, 0.045) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: linear-gradient(to bottom, black, transparent 88%);
+  }
+
+  .page-panel > * {
+    @apply relative z-10;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+  }
+
+  h2 {
+    @apply mb-7 mt-8 text-4xl leading-none text-white md:text-5xl;
+    letter-spacing: 0;
+  }
+
+  .hero-layout {
+    @apply mt-10 grid max-w-none items-center gap-10 lg:grid-cols-[minmax(0,1fr)_360px] xl:grid-cols-[minmax(0,1fr)_420px];
+  }
+
+  .hero-copy {
+    @apply min-w-0;
+  }
+
+  .eyebrow {
+    @apply mb-4 inline-flex rounded-full border px-3 py-1 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[var(--blue)];
+    border-color: rgba(52, 211, 153, 0.28);
+    background: rgba(52, 211, 153, 0.08);
+  }
+
+  .hero-copy h1 {
+    @apply max-w-full whitespace-nowrap text-[clamp(2.6rem,5.3vw,5rem)] leading-[0.98] text-white;
+    letter-spacing: 0;
+  }
+
+  .hero-photo {
+    @apply relative hidden justify-self-end overflow-hidden rounded-2xl border p-2 lg:block;
+    background: linear-gradient(145deg, rgba(52, 211, 153, 0.12), rgba(255, 255, 255, 0.035));
+    border-color: rgba(52, 211, 153, 0.2);
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
+  }
+
+  .hero-photo img {
+    @apply block aspect-square w-full rounded-xl object-cover;
+  }
+
+  .hero-copy h1 span,
+  .contact-copy h2 span {
+    @apply text-[var(--blue)];
+  }
+
+  .hero-text {
+    @apply mt-5 max-w-xl text-base leading-7 text-[var(--soft)] md:text-lg;
+  }
+
+  .quick-contact {
+    @apply mt-6 grid gap-2 text-sm text-[var(--soft)];
+  }
+
+  .quick-contact a,
+  .quick-contact span {
+    @apply inline-flex items-center gap-2 transition hover:text-white;
+  }
+
+  .action-row {
+    @apply mt-6 flex flex-wrap gap-3;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-bold transition hover:-translate-y-0.5;
+  }
+
+  .btn.primary {
+    @apply border-transparent text-[#03101d];
+    background: linear-gradient(90deg, var(--blue), #84cc16);
+  }
+
+  .btn.ghost {
+    @apply text-white;
+    border-color: rgba(52, 211, 153, 0.28);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .socials {
+    @apply mt-5 flex gap-4 text-[var(--blue)];
+  }
+
+  .socials a {
+    @apply transition hover:-translate-y-1 hover:text-white;
+  }
+
+  .featured-strip,
+  .drive-card,
+  .focus-card,
+  .job-card,
+  .skill-card,
+  .info-list,
+  .message-card {
+    @apply rounded-xl border transition duration-300 hover:-translate-y-1;
+    background: linear-gradient(145deg, rgba(14, 29, 52, 0.86), rgba(7, 16, 30, 0.9));
+    border-color: rgba(52, 211, 153, 0.16);
+  }
+
+  .message-card h3,
+  .info-list h3 {
+    @apply mb-4 text-sm uppercase tracking-[0.14em] text-white;
+  }
+
+  .featured-strip {
+    @apply mt-7 grid items-center gap-5 p-5 no-underline md:grid-cols-[1fr_auto];
+    animation: card-breathe 6s ease-in-out infinite;
+  }
+
+  .featured-strip p {
+    @apply text-xs font-bold uppercase tracking-[0.18em] text-[var(--blue)];
+  }
+
+  .featured-strip strong {
+    @apply mt-2 flex items-center gap-2 text-xl text-white;
+  }
+
+  .featured-strip > div:first-child span {
+    @apply mt-1 block text-sm text-[var(--soft)];
+  }
+
+  .mini-tags,
+  .tag-row {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .mini-tags {
+    @apply items-center md:justify-end;
+  }
+
+  .mini-tags span,
+  .tag-row span,
+  .skill-card span {
+    @apply inline-flex items-center rounded-md border px-3 py-1.5 text-xs text-[var(--soft)];
+    background: rgba(255, 255, 255, 0.035);
+    border-color: rgba(52, 211, 153, 0.14);
+  }
+
+  .two-column,
+  .contact-layout {
+    @apply mt-10 grid gap-8 lg:grid-cols-2;
+  }
+
+  .two-column p,
+  .contact-copy p {
+    @apply mb-4 max-w-2xl text-sm leading-7 text-[var(--soft)] md:text-base;
+  }
+
+  .drive-card {
+    @apply mt-8 p-5;
+  }
+
+  .about-side-card {
+    @apply mt-8 self-start lg:mt-20;
+  }
+
+  .drive-card h3 {
+    @apply mb-4 text-lg text-white;
+  }
+
+  .drive-card div {
+    @apply grid gap-3 sm:grid-cols-2;
+  }
+
+  .about-side-card div {
+    @apply grid-cols-1;
+  }
+
+  .drive-card span {
+    @apply flex items-center gap-2 rounded-lg border px-4 py-3 text-sm text-[var(--soft)];
+    background: rgba(255, 255, 255, 0.035);
+    border-color: rgba(52, 211, 153, 0.14);
+  }
+
+  .drive-card svg {
+    @apply shrink-0 text-[var(--blue)];
+  }
+
+  .focus-grid,
+  .skills-grid {
+    @apply mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4;
+  }
+
+  .focus-card,
+  .skill-card {
+    @apply p-5;
+  }
+
+  .focus-card svg,
+  .skill-card svg {
+    @apply mb-3 text-[var(--blue)];
+  }
+
+  .focus-card h3,
+  .skill-card h3 {
+    @apply mb-3 text-base text-white;
+  }
+
+  .focus-card span {
+    @apply block py-1 text-sm leading-6 text-[var(--soft)];
+  }
+
+  .timeline {
+    @apply relative mt-10 grid gap-5 pl-8;
+  }
+
+  .timeline-line {
+    @apply absolute bottom-0 left-2 top-0 w-0.5 origin-top;
+    background: linear-gradient(to bottom, var(--blue), rgba(52, 211, 153, 0.02));
+  }
+
+  .timeline-card {
+    @apply relative grid gap-3 lg:grid-cols-[160px_1fr];
+  }
+
+  .timeline-dot {
+    @apply absolute -left-[31px] top-3 h-3 w-3 rounded-full bg-[var(--blue)];
+    box-shadow: 0 0 16px rgba(52, 211, 153, 0.7);
+  }
+
+  .job-date {
+    @apply text-xs font-semibold text-[var(--soft)];
+  }
+
+  .job-card {
+    @apply p-5;
+  }
+
+  .job-head {
+    @apply flex flex-wrap items-center justify-between gap-3;
+  }
+
+  .job-head h3 {
+    @apply text-lg text-white;
+  }
+
+  .job-head span {
+    @apply rounded-full border px-3 py-1 text-xs text-[var(--blue)];
+    border-color: rgba(52, 211, 153, 0.22);
+    background: rgba(52, 211, 153, 0.07);
+  }
+
+  .job-card ul {
+    @apply mt-4 grid list-disc gap-2 pl-5 text-sm leading-6 text-[var(--soft)];
+  }
+
+  .job-card li::marker {
+    @apply text-[var(--blue)];
+  }
+
+  .award {
+    @apply mt-4 text-sm font-semibold text-[var(--blue)];
+  }
+
+  .tag-row {
+    @apply mt-4;
+  }
+
+  .info-list,
+  .message-card {
+    @apply p-5;
+  }
+
+  .project-case-hero {
+    @apply mt-10 flex gap-5 border-b pb-8;
+    border-color: rgba(52, 211, 153, 0.16);
+  }
+
+  .project-icon-wrap {
+    @apply flex h-14 w-14 shrink-0 items-center justify-center rounded-xl text-[var(--blue)];
+    background: rgba(52, 211, 153, 0.08);
+  }
+
+  .project-hero-copy {
+    @apply max-w-4xl;
+  }
+
+  .project-title-row {
+    @apply mb-3 flex flex-wrap items-center gap-3;
+  }
+
+  .project-title-row h3 {
+    @apply mb-0 text-2xl text-white;
+  }
+
+  .project-title-row a {
+    @apply inline-flex items-center gap-1 rounded-lg border px-3 py-2 text-[var(--blue)] transition hover:-translate-y-0.5 hover:text-white;
+    background: rgba(52, 211, 153, 0.07);
+    border-color: rgba(52, 211, 153, 0.22);
+  }
+
+  .project-case-hero h4 {
+    @apply mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--blue)];
+  }
+
+  .project-case-hero p {
+    @apply mb-3 text-sm leading-6 text-[var(--soft)];
+  }
+
+  .project-case-layout {
+    @apply mt-8 grid gap-x-12 gap-y-9 lg:grid-cols-2;
+  }
+
+  .project-case-section {
+    @apply border-b pb-7;
+    border-color: rgba(52, 211, 153, 0.12);
+  }
+
+  .project-case-section h3,
+  .project-tech-stack h3 {
+    @apply mb-4 text-sm uppercase tracking-[0.16em] text-white;
+  }
+
+  .project-case-section ul {
+    @apply grid gap-2;
+  }
+
+  .project-case-section li {
+    @apply flex items-start gap-2 text-sm leading-6 text-[var(--soft)];
+  }
+
+  .project-case-section svg {
+    @apply mt-1 shrink-0 text-[var(--blue)];
+  }
+
+  .project-tech-stack {
+    @apply mt-8 border-b pb-2;
+    border-color: rgba(52, 211, 153, 0.12);
+  }
+
+  .project-tech-stack > div {
+    @apply grid gap-4 md:grid-cols-2;
+  }
+
+  .project-tech-stack p {
+    @apply m-0 grid gap-1 border-t py-4 text-sm leading-6 text-[var(--soft)];
+    border-color: rgba(52, 211, 153, 0.12);
+  }
+
+  .project-tech-stack strong {
+    @apply text-white;
+  }
+
+  .extra-grid {
+    @apply mt-5 grid gap-4 md:grid-cols-3;
+  }
+
+  .info-list p {
+    @apply text-sm leading-6 text-[var(--soft)];
+  }
+
+  .skills-grid {
+    @apply lg:grid-cols-2;
+  }
+
+  .skill-card div {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .skill-card span {
+    @apply transition hover:border-[var(--blue)] hover:text-white;
+  }
+
+  .extra-grid {
+    @apply md:grid-cols-2;
+  }
+
+  .contact-copy h2 {
+    @apply mt-8 text-4xl leading-none text-white md:text-5xl;
+    letter-spacing: 0;
+  }
+
+  .message-card {
+    @apply grid gap-4;
+  }
+
+  .message-card label {
+    @apply grid gap-1 text-xs font-semibold text-[var(--soft)];
+  }
+
+  .message-card input,
+  .message-card textarea {
+    @apply rounded-lg border px-4 py-3 text-sm text-white outline-none transition focus:border-[var(--blue)];
+    background: rgba(4, 12, 24, 0.78);
+    border-color: rgba(52, 211, 153, 0.16);
+  }
+
+  .message-card textarea {
+    @apply min-h-32 resize-none;
+  }
+
+  .message-card button {
+    @apply mt-1 inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-bold text-[#03101d] transition hover:-translate-y-0.5;
+    background: linear-gradient(90deg, var(--blue), #84cc16);
+  }
+
+  footer {
+    @apply mt-10 text-center text-xs text-[var(--muted)];
+  }
+}
+
+@media (max-width: 768px) {
+  .site-shell {
+    @apply px-2 py-3;
+  }
+
+  .topbar {
+    @apply top-2;
+  }
+
+  .page-panel {
+    @apply min-h-0 p-5 pt-12;
+  }
+
+  .hero-layout {
+    @apply mt-8;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(1.85rem, 8vw, 2.6rem);
+    letter-spacing: 0;
+  }
+
+  h2 {
+    @apply text-3xl;
+  }
+
+  .project-case-hero {
+    @apply flex-col;
+  }
+}
+
+@keyframes glow-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+
+  to {
+    transform: translate3d(-80px, 60px, 0) scale(1.18);
+    opacity: 0.9;
+  }
+}
+
+@keyframes card-breathe {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(52, 211, 153, 0);
+  }
+
+  50% {
+    box-shadow: 0 18px 55px rgba(52, 211, 153, 0.08);
+  }
+}
