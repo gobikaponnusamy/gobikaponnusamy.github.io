@@ -187,6 +187,7 @@ body {
   .quick-contact a,
   .quick-contact span {
     @apply inline-flex items-center gap-2 transition hover:text-white;
+    overflow-wrap: anywhere;
   }
 
   .action-row {
@@ -412,6 +413,7 @@ body {
 
   .project-title-row h3 {
     @apply mb-0 text-2xl text-white;
+    overflow-wrap: anywhere;
   }
 
   .project-title-row a {
@@ -536,28 +538,164 @@ body {
   }
 
   .topbar {
-    @apply top-2;
+    @apply top-2 h-auto min-h-14 px-4;
+  }
+
+  .topbar nav {
+    @apply left-0 right-0;
+  }
+
+  .topbar nav a {
+    @apply py-3 text-sm;
   }
 
   .page-panel {
-    @apply min-h-0 p-5 pt-12;
+    @apply mb-5 min-h-0 rounded-xl p-4 pt-8;
   }
 
   .hero-layout {
-    @apply mt-8;
+    @apply mt-6 gap-6;
   }
 
   .hero-copy h1 {
-    font-size: clamp(1.85rem, 8vw, 2.6rem);
+    font-size: clamp(1.55rem, 7vw, 2.35rem);
     letter-spacing: 0;
   }
 
+  .hero-text {
+    @apply mt-4 text-sm leading-6;
+  }
+
+  .quick-contact {
+    @apply text-xs;
+  }
+
+  .action-row {
+    @apply grid;
+  }
+
+  .btn {
+    @apply w-full px-3;
+  }
+
+  .socials {
+    @apply mt-4;
+  }
+
+  .featured-strip {
+    @apply mt-6 gap-4 p-4;
+  }
+
+  .featured-strip strong {
+    @apply text-lg;
+  }
+
+  .mini-tags span,
+  .tag-row span,
+  .skill-card span {
+    @apply px-2.5 py-1 text-[0.68rem];
+  }
+
   h2 {
-    @apply text-3xl;
+    @apply mb-5 mt-5 text-3xl;
+  }
+
+  .two-column,
+  .contact-layout {
+    @apply mt-6 gap-6;
+  }
+
+  .drive-card,
+  .focus-card,
+  .skill-card,
+  .info-list,
+  .message-card,
+  .job-card {
+    @apply p-4;
+  }
+
+  .focus-grid,
+  .skills-grid {
+    @apply mt-6 grid-cols-1;
+  }
+
+  .timeline {
+    @apply mt-6 gap-4 pl-5;
+  }
+
+  .timeline-dot {
+    @apply -left-[23px];
+  }
+
+  .timeline-card {
+    @apply gap-2;
+  }
+
+  .job-head {
+    @apply items-start;
+  }
+
+  .job-head h3 {
+    @apply text-base leading-snug;
+  }
+
+  .job-card ul {
+    @apply pl-4 text-xs leading-6;
   }
 
   .project-case-hero {
-    @apply flex-col;
+    @apply mt-6 flex-col gap-4 pb-6;
+  }
+
+  .project-title-row h3 {
+    @apply text-xl;
+  }
+
+  .project-case-hero h4 {
+    @apply text-xs leading-5;
+  }
+
+  .project-case-layout {
+    @apply mt-6 grid-cols-1 gap-y-6;
+  }
+
+  .project-case-section {
+    @apply pb-5;
+  }
+
+  .project-case-section li {
+    @apply text-xs leading-6;
+  }
+
+  .project-tech-stack {
+    @apply mt-6;
+  }
+
+  .project-tech-stack > div {
+    @apply grid-cols-1 gap-0;
+  }
+
+  .contact-copy h2 {
+    @apply mt-5 text-3xl;
+  }
+
+  .message-card input,
+  .message-card textarea {
+    @apply px-3 py-2.5;
+  }
+
+  footer {
+    @apply mt-7 px-2 leading-5;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-copy h1 {
+    font-size: clamp(1.35rem, 6.6vw, 1.75rem);
+  }
+
+  .eyebrow {
+    @apply text-[0.6rem] tracking-[0.12em];
   }
 }
 
