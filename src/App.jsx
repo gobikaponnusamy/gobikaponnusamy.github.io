@@ -52,7 +52,7 @@ const experience = [
       "Designed and developed key platform features including Flowstarter integration, exportAuditLog CLI, tenant usage limit detection API, and enhancements to license management and backup systems",
       "Improved system stability by debugging production issues, performing root cause analysis, and resolving memory leaks, out-of-memory issues, and resilience-related problems",
       "Strengthened application security by fixing vulnerabilities in password reset flows and resolving findings from OWASP, SCA, and penetration testing",
-      "Contributed to AI-driven automation by building a QA agent that converts Selenium tests to Playwright and generates test cases from natural language inputs, Zephyr test cases, and Confluence documentation using MCP and Claude",
+      "Contributed to AI-driven automation by building a QA agent that converts Selenium tests to Playwright and generates playwright test script from natural language inputs, Zephyr test cases, and Confluence documentation using MCP and Claude",
       "Built AI agents, reusable skills, and MCP servers as part of early Agentic AI initiatives for workflow automation",
       "Collaborated with cross-functional teams to deliver features across releases and participated in a one-week onsite engagement in Germany"
     ],
@@ -77,6 +77,8 @@ const driftGuardProject = {
   title: "DriftGuard",
   subtitle: "Production Behavior Diff and Deploy Gate Platform",
   summary: "Detects API regressions before deployment by comparing real production traffic with staging responses.",
+  liveUrl: "https://driftguard-2.onrender.com",
+  githubUrl: "https://github.com/gobikaponnusamy/DriftGuard",
   sections: [
     {
       title: "Problem",
@@ -349,7 +351,11 @@ function Project() {
         <div className="project-hero-copy">
           <div className="project-title-row">
             <h3>{driftGuardProject.title}</h3>
-            <a href="https://github.com/gobikaponnusamy/DriftGuard" target="_blank" rel="noreferrer" aria-label="View DriftGuard on GitHub">
+            <a href={driftGuardProject.liveUrl} target="_blank" rel="noreferrer" aria-label="Open live DriftGuard project">
+              Live
+              <ArrowUpRight size={14} />
+            </a>
+            <a href={driftGuardProject.githubUrl} target="_blank" rel="noreferrer" aria-label="View DriftGuard on GitHub">
               <Github size={18} />
               <ArrowUpRight size={14} />
             </a>
