@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import "./styles.css";
+import resumePdf from "./assets/Gobika-resume.pdf";
 import profilePhoto from "./assets/profile-photo.png";
 
 const navItems = ["Home", "About", "Experience", "Project", "Skills", "Contact"];
@@ -248,7 +249,7 @@ function Hero() {
           </m.div>
           <m.div className="action-row" variants={riseItem}>
             <a className="btn primary" href="#project">View Project</a>
-            <a className="btn ghost" href="#contact"><Download size={14} /> Download Resume</a>
+            <a className="btn ghost" href={resumePdf} download="Gobika-Ponnusamy-Resume.pdf"><Download size={14} /> Download Resume</a>
           </m.div>
           <m.div className="socials" variants={riseItem}>
             <a href="https://github.com/gobikaponnusamy" target="_blank" rel="noreferrer"><Github size={18} /></a>
